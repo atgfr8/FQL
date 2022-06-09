@@ -1,4 +1,4 @@
-namespace FilterQueryLanguage.Core
+namespace FilterQueryLanguage.FQLParser.Syntax
 {
     public enum FilterQueryOperator
     {
