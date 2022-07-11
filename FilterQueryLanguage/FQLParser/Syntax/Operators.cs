@@ -6,7 +6,11 @@ namespace FilterQueryLanguage.FQLParser.Syntax
         contains,
         startsWith,
         equal,
-        notEqual
+        notEqual,
+        greaterThan,
+        greaterThanOrEqualTo,
+        lessThan,
+        lessThanOrEqualTo,
     }
 
     public enum FilterQueryLogicalOperator

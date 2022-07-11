@@ -21,12 +21,24 @@ namespace FilterQueryLanguage.FQLParser.Syntax
             },
             {
                 "notequal", FQLKeyword.NotEqual
+            },
+            {
+                "gt", FQLKeyword.GreaterThan
+            },
+            {
+                "gte", FQLKeyword.GreaterThanOrEqualTo
+            },
+            {
+                "lt", FQLKeyword.LessThan
+            },
+            {
+                "lte", FQLKeyword.LessThanOrEqualTo
             }
         };
 
         public static string GetString(this FQLKeyword keyword)
         {
-           return _fqlKeywords.FirstOrDefault(x => x.Value == keyword).Key;
+            return _fqlKeywords.FirstOrDefault(x => x.Value == keyword).Key;
         }
     }
 }

@@ -41,7 +41,7 @@ namespace FilterQueryLanguage.FQLParser.Parser
 
         public Parser<string> FieldValue =>
             from first in Parse.Char('\'').Token()
-            from rest in Parse.LetterOrDigit.Many().Text()
+            from rest in Parse.LetterOrDigit.Or(Parse.Char('/')).Many().Text()
             from end in Parse.Char('\'').Token()
             select rest;
 

@@ -118,6 +118,14 @@ namespace FilterQueryLanguage.FQLParser.Visitors
                 case FilterQueryOperator.contains:
                 case FilterQueryOperator.startsWith:
                     return "like";
+                case FilterQueryOperator.greaterThan:
+                    return ">";
+                case FilterQueryOperator.greaterThanOrEqualTo:
+                    return ">=";
+                case FilterQueryOperator.lessThan:
+                    return "<";
+                case FilterQueryOperator.lessThanOrEqualTo:
+                    return "<=";
                 default:
                     throw new ApplicationException("Error in converting to SQL Query, check your code");
             }

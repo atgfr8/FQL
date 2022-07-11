@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using FilterQueryLanguage.FQLParser.Visitors;
 
@@ -13,5 +14,15 @@ namespace FilterQueryLanguage.FQLParser.Syntax
         {
             visitor.Visit(this);
         }
+
+        /// <summary>
+        /// This readonly method checks to see if the operator is:
+        /// <para>greaterThan, greaterThanOrEqualTo, lessThan, or lessThanOrEqualTo </para>
+        /// </summary>
+        public bool OperatorIsGreaterThanLessThanEqualTo => 
+            Operator == FilterQueryOperator.greaterThan ||
+            Operator == FilterQueryOperator.greaterThanOrEqualTo ||
+            Operator == FilterQueryOperator.lessThan ||
+            Operator == FilterQueryOperator.lessThanOrEqualTo;
     }
 }

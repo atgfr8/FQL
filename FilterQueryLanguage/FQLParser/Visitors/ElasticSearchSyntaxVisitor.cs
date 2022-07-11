@@ -11,7 +11,7 @@ namespace FilterQueryLanguage.FQLParser.Visitors
     It is not tested and maybe incorrect or it may work as it should.
     Hopefully this structure will make it easier to fix or extend in the future should the prior prove to.
     */
-    
+
     public class ElasticSearchSyntaxVisitor : BaseSyntaxVisitor
     {
         private StringBuilder _stringBuilder;
@@ -48,6 +48,7 @@ namespace FilterQueryLanguage.FQLParser.Visitors
             _stringBuilder.Append(GetPredicateQuery(node));
         }
 
+
         private string GetPredicateQuery(ExpressionSyntax predicate)
         {
             if (predicate.Operator == FilterQueryOperator.equal)
@@ -57,6 +58,10 @@ namespace FilterQueryLanguage.FQLParser.Visitors
             if (predicate.Operator == FilterQueryOperator.notEqual)
             {
                 return GetNotEqualQuery(predicate);
+            }
+            if(predicate.OperatorIsGreaterThanLessThanEqualTo)
+            {
+                return GetRangeQuery(predicate);
             }
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("{");
@@ -91,6 +96,17 @@ namespace FilterQueryLanguage.FQLParser.Visitors
             return query;
         }
 
+        private string GetRangeQuery(ExpressionSyntax expression)
+        {
+            var stringBuilder = new StringBuilder();
+            stringBuilder.Append("{ \"bool\" : {");
+            stringBuilder.Append($"\"{GetField(expression.Field)}\" : {{");
+            stringBuilder.Append($"\"range\" : \"{expression.FieldValue}\",");
+            stringBuilder.Append($"\"{GetESOperator(expression.Operator)}\" : \"and\"");
+            stringBuilder.Append("}}}");
+            return stringBuilder.ToString();
+        }
+
         private string GetField(string str) => GetString(str).Camelize();
         private string GetString(string str)
         {
@@ -105,6 +121,14 @@ namespace FilterQueryLanguage.FQLParser.Visitors
                     return "match";
                 case FilterQueryOperator.startsWith:
                     return "match_phrase_prefix";
+                case FilterQueryOperator.greaterThan:
+                    return "gt";
+                case FilterQueryOperator.greaterThanOrEqualTo:
+                    return "gte";
+                case FilterQueryOperator.lessThan:
+                    return "lt";
+                case FilterQueryOperator.lessThanOrEqualTo:
+                    return "lte";
                 default:
                     throw new ApplicationException("Error in converting to ES Query, check your code");
             }
