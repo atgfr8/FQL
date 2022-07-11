@@ -5,10 +5,10 @@
     <Nullable>enable</Nullable>
     <PackageId>FQL</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Armstrong Transport Group</Authors>
     <Company>Armstrong Transport Group</Company>
-    <PackageDescription>This package adds an Octocat!</PackageDescription>
+    <PackageDescription>Add a queryable language to translated to elastic search, sql, and with the possibility for many more</PackageDescription>
     <RepositoryUrl>https://github.com/OWNER/REPOSITORY</RepositoryUrl>
   </PropertyGroup>
     <ItemGroup>
