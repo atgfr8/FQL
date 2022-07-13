@@ -5,11 +5,11 @@
     <Nullable>enable</Nullable>
     <PackageId>FQL</PackageId>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>Armstrong Transport Group</Authors>
     <Company>Armstrong Transport Group</Company>
     <PackageDescription>Add a queryable language to translated to elastic search, sql, and with the possibility for many more</PackageDescription>
-    <RepositoryUrl>https://github.com/OWNER/REPOSITORY</RepositoryUrl>
+    <RepositoryUrl>https://github.com/atgfr8/fql</RepositoryUrl>
   </PropertyGroup>
     <ItemGroup>
     <PackageReference Include="Sprache" Version="2.3.1" />
